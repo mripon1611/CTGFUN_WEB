@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShowAllController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContentDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +18,6 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('show-all/{cat_type}', [ShowAllController::class, 'index']);
+Route::get('login', [LoginController::class, 'index']);
+Route::get('content-details/{content_id}', [ContentDetailsController::class, 'index']);

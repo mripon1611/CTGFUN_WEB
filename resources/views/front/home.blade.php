@@ -11,8 +11,8 @@
                 <li>
                     <div class="slider-info banner-view bg bg2" style="background:url({{ $item['cover'] }}) no-repeat center !important; width:100%;">
                         <div class="banner-info">
-                            <h3>{{ $item['title'] }}</h3>
-                            <p>{{ $item['plot'] }}</p>
+                            <!-- <h3>{{ $item['title'] }}</h3> -->
+                            <!-- <p>{{ $item['plot'] }}</p> -->
                             <a href="{{url('/')}}#small-dialog1" class="popup-with-zoom-anim play-view1">
                                 <span class="video-play-icon">
                                     <span class="fa fa-play"></span>
@@ -50,7 +50,7 @@
                         <h3 class="hny-title">{{$singleRes['catname']}}</h3>
                     </div>
                     <div class="headerhny-right text-lg-right">
-                        <h4><a class="show-title" href="#">Show all</a></h4>
+                        <h4><a class="show-title" href="{{url('show-all',$singleRes['catcode'])}}">Show all</a></h4>
                     </div>
                 </div>
             </div>
@@ -58,13 +58,13 @@
                 @foreach($singleRes['contents'] as $index => $item)
                 @if($index <= 11) <div class="item vhny-grid">
                     <div class="box16">
-                        <a href="genre.html">
+                        <a href="{{ url('content-details',$item['contentid']) }}">
                             <figure>
                                 <img class="img-fluid" src="{{$item['cover']}}" alt="">
                             </figure>
                             <div class="box-content">
                                 <h3 class="title">{{$item['title']}}</h3>
-                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
+                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> {{ $item['year']}}
 
                                     </span>
 
@@ -99,8 +99,8 @@
                             <div class="mid-info">
                                 <span class="sub-text">{{$item['genre']}}</span>
                                 <h3>{{$item['title']}}</h3>
-                                <p>{{$item['year']}} ‧ {{$item['genre']}} ‧ {{$item['runtime']}}</p>
-                                <a class="watch" href="#"><span class="fa fa-play" aria-hidden="true"></span>
+                                <p>{{$item['year']}} ‧ {{$item['runtime'] !="N/A" ? $item['runtime'] : ''}}</p>
+                                <a class="watch" href="{{ url('content-details',$item['contentid']) }}"><span class="fa fa-play" aria-hidden="true"></span>
                                     Watch Trailer</a>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                         <h3 class="hny-title">{{$singleRes['catname']}}</h3>
                     </div>
                     <div class="headerhny-right text-lg-right">
-                        <h4><a class="show-title" href="#">Show all</a></h4>
+                        <h4><a class="show-title" href="{{url('show-all',$singleRes['catcode'])}}">Show all</a></h4>
                     </div>
                 </div>
             </div>
@@ -135,12 +135,12 @@
                 @foreach($singleRes['contents'] as $index => $item)
                 @if($index <= 11) <div class="item vhny-grid">
                     <div class="box16 mb-0">
-                        <a href="#">
+                        <a href="{{ url('content-details',$item['contentid']) }}">
                             <figure>
                                 <img class="img-fluid" src="{{$item['cover']}}" alt="">
                             </figure>
                             <div class="box-content">
-                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> {{$item['runtime']}}
+                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> {{$item['runtime'] !="N/A" ? $item['runtime'] : ''}}
 
                                     </span>
 
@@ -151,10 +151,10 @@
                         </a>
                     </div>
                     <h3> <a class="title-gd" href="#">{{$item['title']}}</a></h3>
-                    <p>{{$item['genre']}}</p>
-                    <div class="button-center text-center mt-4">
+                    <p>{{$item['year']}}</p>
+                    <!-- <div class="button-center text-center mt-4">
                         <a href="#" class="btn watch-button">Watch now</a>
-                    </div>
+                    </div> -->
 
             </div>
             @else

@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Interfaces\apiRepositoryInterface;
-use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Client;
 
-class HomeController extends Controller
+class ShowAllController extends Controller
 {
+    //
     protected $apiRepository;
     public function __construct(apiRepositoryInterface $apiRepository)
     {
         $this->apiRepository = $apiRepository;
     }
 
-    public function index()
+    public function index($cat_type)
     {
-        $responses = $this->apiRepository->homeAPI();
+        $responses = $this->apiRepository->showAll($cat_type);
         $responsesGenre = $this->apiRepository->genreList();
 
-        // dd($responsesGenre);
-        return view('front.home', compact('responses', 'responsesGenre'));
+        // dd($responses);
+        return view('front.show-all', compact('responses', 'responsesGenre'));
     }
 }
