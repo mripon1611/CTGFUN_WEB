@@ -2,10 +2,41 @@
 @section('content')
 
 @if($responses)
+
+<!--/breadcrumbs -->
+<div class="w3l-breadcrumbs">
+    <nav id="breadcrumbs" class="breadcrumbs">
+        <div class="container page-wrapper">
+            <a href="{{url('/')}}">Home</a> » <span class="breadcrumb_last" aria-current="page">Details</span>
+        </div>
+    </nav>
+</div>
+<!--//breadcrumbs -->
+
 <section class="w3l-text-8 genre-single">
     <div class="container py-5">
         <div class="d-grid-1 py-lg-4">
             <div class="text">
+                <div class="w3l-about4" id="about">
+                    <div class="new-block">
+                        <div class="pop-img-ab position-relative" style="background:url({{ $responses['poster'] }}) no-repeat center;">
+                            <div class="history-info">
+
+                                <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
+                                    <span class="video-play-icon">
+                                        <span class="fa fa-play"></span>
+                                    </span>
+                                </a>
+
+                                <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                                <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                                <iframe src="https://player.vimeo.com/video/323491174" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="genre-single-page my-lg-5 my-4">
                     <div class="row ab-grids-sec align-items-center">
                         <div class="col-lg-4 gen-right">
@@ -20,14 +51,33 @@
                                     <a href="#"><span class="fa fa-clock-o"></span> {{$responses['released']}}</a>
                                 </li>
                                 <li>
-                                    <a href="#"><span class="fa fa-user"></span> Admin</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-heart-o"></span> 50</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span class="fa fa-comments-o"></span> 20
-                                        Comments</a>
+                                    <a href="javascript:void(0)" onclick="addOrRemoveFav('{{$responses['movieid']}}')"><span class="fa {{$responses['infav'] == 1 ? 'fa-heart' : 'fa-heart-o'}}" id="idAddOrRemove"></span> Favorite</a>
+                                    <input type="hidden" id="idInFav" value="{{$responses['infav']}}">
+                                    <script>
+                                        function addOrRemoveFav(movieid){
+                                            let idAddOrRemove = document.getElementById("idAddOrRemove");
+                                            let idInFav = document.getElementById("idInFav");
+                                            
+                                            $.ajax({
+                                                url: "{{ url('addOrRemoveFav') }}",
+                                                method: "POST",
+                                                data: {
+                                                    '_token': '{{ csrf_token() }}',
+                                                    'movieid': movieid,
+                                                    'infav': idInFav.value == 1 ? 0 : 1,
+                                                },
+                                                success: function(data) {
+                                                    if(idInFav.value == 0){
+                                                        idAddOrRemove.className = 'fa fa-heart';
+                                                        idInFav.value = 1;
+                                                    }else{
+                                                        idAddOrRemove.className = 'fa fa-heart-o';
+                                                        idInFav.value = 0;
+                                                    }
+                                                } 
+                                            });
+                                        }
+                                    </script>
                                 </li>
                             </ul>
                             <div class="share-more d-flex mt-4">
@@ -40,12 +90,6 @@
                 </div>
                 <div class="genre-single-page mb-lg-5 mb-4">
                     <div class="row ab-grids-sec">
-                        <!-- <div class="col-lg-5 gen-right-1">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam id quisquam ipsam
-                                molestiae ad eius accusantium? Nulla dolorem perferendis inventore! posuere cubilia
-                                Curae;
-                                Nunc non risus in justo convallis feugiat.</p>
-                        </div> -->
                         <div class="col-lg-12 gen-right-1">
                             <div class="mb-3">
                                 <p><b>Actors :</b> </p>
@@ -56,37 +100,13 @@
                                 <p>{{$responses['director']}}</p>
                             </div>
                             <div class="mb-3">
-                                <p><b>Director :</b> </p>
+                                <p><b>Writers :</b> </p>
                                 <p>{{$responses['writer']}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w3l-about4" id="about">
-                    <div class="new-block">
-                        <div class="pop-img-ab position-relative" style="background:url({{ $responses['poster'] }}) no-repeat center;">
-                            <div class="history-info">
-                                <!-- <a href="#popup-video" class="play-view text-center position-absolute">
-												  <span class="video-play-icon">
-													  <span class="fa fa-play"></span>
-												  </span>
-											  </a> -->
-
-                                <a href="genre-single.html#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
-                                    <span class="video-play-icon">
-                                        <span class="fa fa-play"></span>
-                                    </span>
-                                </a>
-
-                                <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                                <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-                                    <iframe src="https://player.vimeo.com/video/395376850" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                
             </div>
         </div>
     </div>
@@ -153,3 +173,4 @@
 @endif
 
 @endsection
+

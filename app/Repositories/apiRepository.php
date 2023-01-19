@@ -52,4 +52,50 @@ class apiRepository implements apiRepositoryInterface
 
         return json_decode($response->getBody(), true);
     }
+
+    public function checkLogin($user_id = '', $password = '')
+    {
+        $client = new Client(['base_uri' => 'http://103.121.39.254/ctgfun/']);
+
+        $response = $client->request('POST', 'api/login', ['form_params' => [
+            'username' => $user_id,
+            'password' => $password,
+        ]]);
+
+        return json_decode($response->getBody(), true);
+    }
+    public function myFavouriteList($user_id = '')
+    {
+        $client = new Client(['base_uri' => 'http://103.121.39.254/ctgfun/']);
+
+        $response = $client->request('POST', 'api/getFavouriteList', ['form_params' => [
+            'username' => $user_id,
+            'page' => 1,
+        ]]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function addFavorite($username, $movieid)
+    {
+        $client = new Client(['base_uri' => 'http://103.121.39.254/ctgfun/']);
+
+        $response = $client->request('POST', 'api/setFavouriteAdd', ['form_params' => [
+            'username' => $username,
+            'movieid' => $movieid,
+        ]]);
+
+        return json_decode($response->getBody(), true);
+    }
+    public function removeFavorite($username, $movieid)
+    {
+        $client = new Client(['base_uri' => 'http://103.121.39.254/ctgfun/']);
+
+        $response = $client->request('POST', 'api/setFavouriteRemove', ['form_params' => [
+            'username' => $username,
+            'movieid' => $movieid,
+        ]]);
+
+        return json_decode($response->getBody(), true);
+    }
 }

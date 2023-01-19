@@ -16,11 +16,15 @@ class ContentDetailsController extends Controller
 
     public function index($content_id)
     {
-        $user_id = '01675447804';
-        $responses = $this->apiRepository->contenDetails($content_id, $user_id);
-        $responsesGenre = $this->apiRepository->genreList();
+        if (session()->has('username')) {
+            $user_id = session()->get('username');
+            $responses = $this->apiRepository->contenDetails($content_id, $user_id);
+            $responsesGenre = $this->apiRepository->genreList();
 
-        // dd(count($responses));
-        return view('front.content-details', compact('responses', 'responsesGenre'));
+            // dd($responses);
+            return view('front.content-details', compact('responses', 'responsesGenre'));
+        } else {
+            return redirect('login');
+        }
     }
 }

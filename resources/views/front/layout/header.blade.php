@@ -2,7 +2,7 @@
     <!--/nav-->
     <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
         <div class="container">
-            <h1><a class="navbar-brand" href="{{url('/')}}"><span class="fa fa-play icon-log" aria-hidden="true"></span>
+            <h1><a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('ps/assets/images/ctg-fun-fab-icon.png')}}" alt="">
                     CTG FUN </a></h1>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa icon-expand fa-bars"></span>
@@ -24,14 +24,14 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if(count($responsesGenre)>0)
                             @foreach($responsesGenre as $genre)
-                            <a class="dropdown-item" href="#">{{$genre['catname']}}</a>
+                            <a class="dropdown-item" href="{{ url('show-all',$genre['catcode']) }}">{{$genre['catname']}}</a>
                             @endforeach
                             @endif
                         </div>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Subscription</a>
-                    </li>
+                    </li> --}}
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{url('/')}}#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Blog <span class="fa fa-angle-down"></span>
@@ -42,8 +42,21 @@
                         </div>
                     </li> -->
 
+                    @if(session()->has('username'))
+                    <li class="nav-item {{ url()->current() == url('my-favorite') ? 'active' : '' }}">
+                        
+                        <a class="nav-link" href="{{ url('my-favorite') }}">My Favorite</a> 
+                        
+                    </li>
+                    @endif
+
                     <li class="nav-item {{ url()->current() == url('login') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('login') }}">Login</a>
+                        @if(session()->has('username'))
+                        <a class="nav-link" href="{{ url('logout') }}">Logout</a>  
+                                                   
+                        @else
+                        <a class="nav-link" href="{{ url('login') }}">Login</a> 
+                        @endif
                     </li>
                 </ul>
 
@@ -61,22 +74,11 @@
                             <div class="browse-items">
                                 <h3 class="hny-title two mt-md-5 mt-4">Browse all:</h3>
                                 <ul class="search-items">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Drama</a></li>
-                                    <li><a href="#">Family</a></li>
-                                    <li><a href="#">Thriller</a></li>
-                                    <li><a href="#">Commedy</a></li>
-                                    <li><a href="#">Romantic</a></li>
-                                    <li><a href="#">Tv-Series</a></li>
-                                    <li><a href="#">Horror</a></li>
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Drama</a></li>
-                                    <li><a href="#">Family</a></li>
-                                    <li><a href="#">Thriller</a></li>
-                                    <li><a href="#">Commedy</a></li>
-                                    <li><a href="#">Romantic</a></li>
-                                    <li><a href="#">Tv-Series</a></li>
-                                    <li><a href="#">Horror</a></li>
+                                    @if(count($responsesGenre)>0)
+                                        @foreach($responsesGenre as $genre)
+                                        <li><a href="{{ url('show-all',$genre['catcode']) }}">{{$genre['catname']}}</a></li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>

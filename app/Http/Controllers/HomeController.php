@@ -20,7 +20,7 @@ class HomeController extends Controller
         $responses = $this->apiRepository->homeAPI();
         $responsesGenre = $this->apiRepository->genreList();
 
-        // dd($responsesGenre);
+        // dd($responses);
         return view('front.home', compact('responses', 'responsesGenre'));
     }
 }

@@ -10,6 +10,7 @@ Author URL: http://w3layouts.com
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>CTG FUN</title>
+	<link rel="shortcut icon" href="{{asset('ps/assets/images/ctg-fun-icon.png')}}">
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="{{ asset('ps/assets/css/style-liberty.css') }}">
 	<!-- Template CSS -->

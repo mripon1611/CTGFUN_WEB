@@ -5,7 +5,7 @@
 <div class="w3l-breadcrumbs">
     <nav id="breadcrumbs" class="breadcrumbs">
         <div class="container page-wrapper">
-            <a href="{{url('/')}}">Home</a> » <span class="breadcrumb_last" aria-current="page">Genre</span>
+            <a href="{{url('/')}}">Home</a> » <span class="breadcrumb_last" aria-current="page">My Favorite</span>
         </div>
     </nav>
 </div>
@@ -18,11 +18,8 @@
             <div class="headerhny-title">
                 <div class="w3l-title-grids">
                     <div class="headerhny-left">
-                        <h3 class="hny-title">{{ $responses['catname']}}</h3>
+                        <h3 class="hny-title">Favorite</h3>
                     </div>
-                    <!-- <div class="headerhny-right text-lg-right">
-                        <h4><a class="show-title" href="genre.html">Show all</a></h4>
-                    </div> -->
                 </div>
             </div>
             <div class="w3l-populohny-grids">
@@ -40,7 +37,7 @@
 
                                     </span>
 
-                                    {{-- <span class="post fa fa-heart text-right"></span> --}}
+                                    <span class="post fa fa-heart text-right"></span>
                                 </h4>
                             </div>
                             <span class="fa fa-play video-icon" aria-hidden="true"></span>
