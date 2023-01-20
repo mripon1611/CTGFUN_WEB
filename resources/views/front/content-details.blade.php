@@ -15,8 +15,8 @@
 
 <section class="w3l-text-8 genre-single">
     <div class="container">
-        <div class="d-grid-1 py-lg-4">
-            <div class="w3l-about4" id="about" style="">
+        <div class="d-grid-1">
+            {{-- <div class="w3l-about4" id="about" style="">
                 <div class="new-block" style="">
                   <div class="pop-img-ab position-relative">
                     <video id="my-video" class="video-js" controls preload="auto" width="1150px" height="100%" poster="{{$responses['poster']}}" data-setup='{"fluid": true, "autoplay":true, "playbackRates": [0.5,1,1.25,1.5, 2]
@@ -33,7 +33,7 @@
                     </video>
                   </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="text">
                 {{-- <div class="w3l-about4" id="about">
                     <div class="new-block">
@@ -98,7 +98,22 @@
                             </ul>
                             <div class="share-more d-flex mt-4">
                                 <a href="#" class="btn read-button">Play Now </a>
-                                <a href="#" class="btn read-button ml-3">Preview</a>
+                                @if($responses['trailer'] != "")
+
+                                <div class="history-info">
+
+                                    <a href="#small-dialog" class="btn read-button ml-3 popup-with-zoom-anim play-view text-center position-absolute">
+                                        Preview
+                                    </a>
+    
+                                    <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                                        @php
+                                            $url = str_replace("watch?v=", "embed/",$responses['trailer'])
+                                        @endphp
+                                        <iframe class="embed-responsive-item" src="{{ $url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                @endif
 
                             </div>
                         </div>
