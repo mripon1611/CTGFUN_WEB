@@ -16,6 +16,7 @@ Author URL: http://w3layouts.com
 	<!-- Template CSS -->
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&amp;display=swap" rel="stylesheet">
 	<!-- Template CSS -->
+	<link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
 </head>
 
 <body>

@@ -572,7 +572,7 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
+  max-width: 240px;
   max-height: 300px;
   min-height: 300px;
 }
@@ -3410,6 +3410,11 @@ fieldset:disabled a.btn {
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
+}
+
+.video-js .vjs-big-play-button{
+  top:300px !important;
+  left:530px !important;
 }
 
 .btn-sm,

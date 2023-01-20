@@ -14,10 +14,28 @@
 <!--//breadcrumbs -->
 
 <section class="w3l-text-8 genre-single">
-    <div class="container py-5">
+    <div class="container">
         <div class="d-grid-1 py-lg-4">
+            <div class="w3l-about4" id="about" style="">
+                <div class="new-block" style="">
+                  <div class="pop-img-ab position-relative">
+                    <video id="my-video" class="video-js" controls preload="auto" width="1150px" height="100%" poster="{{$responses['poster']}}" data-setup='{"fluid": true, "autoplay":true, "playbackRates": [0.5,1,1.25,1.5, 2]
+                }'>
+                        <source src="{{$responses['urls'][0]['serverurl']}}" type="video/mp4" />
+                        <source src="{{$responses['urls'][0]['serverurl']}}" type="video/webm" />
+                        <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank"
+                            >supports HTML5 video</a
+                        >
+                        </p>
+                    </video>
+                  </div>
+                </div>
+            </div>
             <div class="text">
-                <div class="w3l-about4" id="about">
+                {{-- <div class="w3l-about4" id="about">
                     <div class="new-block">
                         <div class="pop-img-ab position-relative" style="background:url({{ $responses['poster'] }}) no-repeat center;">
                             <div class="history-info">
@@ -28,15 +46,13 @@
                                     </span>
                                 </a>
 
-                                <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
                                 <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
                                 <iframe src="https://player.vimeo.com/video/323491174" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
                             </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
+                </div> --}}
                 <div class="genre-single-page my-lg-5 my-4">
                     <div class="row ab-grids-sec align-items-center">
                         <div class="col-lg-4 gen-right">
@@ -81,7 +97,7 @@
                                 </li>
                             </ul>
                             <div class="share-more d-flex mt-4">
-                                <a href="#" class="btn read-button">Buy From $10 </a>
+                                <a href="#" class="btn read-button">Play Now </a>
                                 <a href="#" class="btn read-button ml-3">Preview</a>
 
                             </div>
@@ -172,5 +188,10 @@
 </section>
 @endif
 
+
+  <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
+
 @endsection
+
+
 

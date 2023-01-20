@@ -16,21 +16,22 @@
                                     <li><a href="#">English Movies</a></li>
                                     <li><a href="#">Tailor</a></li>
                                     <li><a href="#">Upcoming Movies</a></li>
-                                    <li><a href="#">Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3 col-sm-6 sub-two-right mt-5">
                                 <h6>Information</h6>
                                 <ul>
-                                    <li><a href="#">Home</a> </li>
-                                    <li><a href="#">About</a> </li>
-                                    <li><a href="#">Tv Series</a> </li>
-                                    <li><a href="#">Blogs</a> </li>
-                                    <li><a href="#">Login</a></li>
+                                    <li><a href="{{url('/')}}">Home</a> </li>
+                                    {{-- <li><a href="#">About</a> </li> --}}
+                                    {{-- <li><a href="#">Tv Series</a> </li> --}}
+                                    {{-- <li><a href="#">Blogs</a> </li> --}}
+                                    @if (!session()->has('username'))
+                                    <li><a href="{{url('login')}}">Login</a></li>
+                                    @endif
                                     <li><a href="#">Contact</a></li>
                                 </ul>
                             </div>
-                            <div class="col-md-3 col-sm-6 sub-two-right mt-5">
+                            {{-- <div class="col-md-3 col-sm-6 sub-two-right mt-5">
                                 <h6>Locations</h6>
                                 <ul>
                                     <li><a href="#">Asia</a></li>
@@ -40,7 +41,7 @@
                                     <li><a href="#">Korea</a></li>
                                     <li><a href="#">United Kingdom</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="col-md-3 col-sm-6 sub-two-right mt-5">
                                 <h6>Newsletter</h6>
                                 <form action="index.html#" class="subscribe mb-3" method="post">

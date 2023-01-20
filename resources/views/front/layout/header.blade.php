@@ -21,11 +21,16 @@
                         <a class="nav-link dropdown-toggle" href="{{url('/')}}#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Genre <span class="fa fa-angle-down"></span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width:500px !important; left:-135px">
                             @if(count($responsesGenre)>0)
+                            <div class="row">
                             @foreach($responsesGenre as $genre)
-                            <a class="dropdown-item" href="{{ url('show-all',$genre['catcode']) }}">{{$genre['catname']}}</a>
+                            
+                                <div class="col-md-4">
+                                    <a class="dropdown-item" href="{{ url('show-all',$genre['catcode']) }}">{{$genre['catname']}}</a>
+                                </div>
                             @endforeach
+                            </div>
                             @endif
                         </div>
                     </li>
